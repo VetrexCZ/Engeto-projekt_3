@@ -14,6 +14,8 @@ Pro instalaci knihoven se dopuručuje používát nové virtualní prostředí a
 >
 >2. ``pip freeze > requirements.txt   # nainstaluju knihovny``
 
+## Spuštění Projektu
+
 Spuštění projektu ``projekt_3.py`` v rámci přík. řádku požaduje dva povinné argumenty.
 
 Následně se vám stáhnou výsledky jako soubor s příponou ``.csv``.
