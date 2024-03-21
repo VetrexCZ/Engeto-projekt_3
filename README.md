@@ -14,7 +14,7 @@ Pro instalaci knihoven se dopuručuje používát nové virtualní prostředí a
 
 >1. ``pip --version                   # overim verzi manazeru``
 >
->2. ``pip freeze > requirements.txt   # nainstaluju knihovny``
+>2. ``pip install -r requirements.txt   # nainstaluju knihovny``
 
 ## Spuštění Projektu
 
