@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Scraper",
+            "type": "python",
+            "request": "launch",
+            "program": "D:/Programs/Pracovni_prostredi/Engeto_final/Engeto-projekt_3/projekt_3.py",
+            "args": [
+                "https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=14&xnumnuts=8103",
+                "vysledky_karvina.csv"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

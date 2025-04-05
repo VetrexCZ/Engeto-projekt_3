@@ -6,29 +6,45 @@ email: ddaniel.skrivanek@seznam.cz
 discord: vetrex89cz #3080
 """
 
+from bs4 import BeautifulSoup
 import sys
 import csv
 import requests
-from bs4 import BeautifulSoup
+
+CLEAR = "\033[2J"
+CLEAR_AND_RETURN = "\033[H"
+
+def show_usage():
+    print("Usage: python projekt_3.py <url> <output_file.csv>")
 
 def input_check():
-    # to check if all required arguments has been entered
+    """Check command line arguments and show usage if invalid"""
+    if len(sys.argv) == 1:
+        print(CLEAR)
+        print(CLEAR_AND_RETURN)
+        print("Error: No arguments provided!")
+        show_usage()
+        sys.exit(1)
+    
     if len(sys.argv) != 3:
-        print("Requiered (3) parameters not entered.")
-        print("Shutting down the program..")
-        exit()
+        print(CLEAR)
+        print(CLEAR_AND_RETURN)
+        print(f"Error: Expected 2 arguments, got {len(sys.argv) - 1}")
+        show_usage()
+        sys.exit(1)
 
-    # to check if requiered URL has been entered
     if "https://volby.cz/pls/ps2017nss/ps32" not in sys.argv[1]:
-        print("URL parameter not valid.")
-        print("Shutting down the program..")
-        exit()
+        print(CLEAR)
+        print(CLEAR_AND_RETURN)
+        print("Error: Invalid URL parameter")
+        print("URL must start with: https://volby.cz/pls/ps2017nss/ps32")
+        sys.exit(1)
 
-    # to check if required outpout file name has been entered
     if not sys.argv[2].endswith(".csv"):
-        print("Invalid output file name.")
-        print("Shutting down the program..")
-        exit()
+        print(CLEAR)
+        print(CLEAR_AND_RETURN)
+        print("Error: Output file must have .csv extension")
+        sys.exit(1)
 
 def get_response(url: str) -> str:
     # get data from url
@@ -193,5 +209,10 @@ def to_csv(filename: str, data):
         exit()
 
 if __name__ == "__main__":
-    data = main(sys.argv[1])
-    to_csv(sys.argv[2], data)
+    input_check()  # Check arguments first
+    try:
+        data = main(sys.argv[1])
+        to_csv(sys.argv[2], data)
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        sys.exit(1)
