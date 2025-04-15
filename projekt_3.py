@@ -163,8 +163,9 @@ def get_political_parties_names(soup: BeautifulSoup) -> list:
 def main(url: str):
     input_check()
     soup = parse_response(get_response(url))
-    city_codes = get_number_of_city(get_table_row(soup))
-    city_names = get_name_of_city(get_table_row(soup))
+    table_rows = get_table_row(soup)  # uložíme výsledek do proměnné
+    city_codes = get_number_of_city(table_rows)
+    city_names = get_name_of_city(table_rows)
     get_urls(soup)
     get_url_to_process(get_urls(soup))
     processed_urls = process_url(get_url_to_process(get_urls(soup)))
